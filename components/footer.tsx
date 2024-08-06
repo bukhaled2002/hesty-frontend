@@ -1,0 +1,141 @@
+import Image from "next/image";
+import Link from "next/link";
+
+type Props = {};
+
+function Footer({}: Props) {
+  return (
+    <footer className="bg-secondary rounded-t-[30px] mt-[120px]">
+      <div className="container space-y-8 px-4 pt-16 pb-8 sm:px-6 lg:space-y-20 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
+          <div>
+            <div className="text-teal-600">
+              <Image
+                alt="Logo"
+                height={63.87}
+                src="/white-logo.svg"
+                width={125}
+              />
+            </div>
+
+            <p className="mt-4 max-w-xs text-white/80">
+              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
+              هذا
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
+            <div>
+              <p className="text-white font-bold text-xl text-center">
+                مركز المساعدة
+              </p>
+              <ul className="mt-6 space-y-4 text-sm text-center">
+                <li>
+                  <Link
+                    href="#"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    مركز المساعدة
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    مركز المساعدة
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    مركز المساعدة
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-white font-bold text-xl text-center">
+                مركز المساعدة
+              </p>
+              <ul className="mt-6 space-y-4 text-sm text-center">
+                <li>
+                  <Link
+                    href="#"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    مركز المساعدة
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    مركز المساعدة
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    مركز المساعدة
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-white font-bold text-xl text-center">
+                اعثر علينا
+              </p>
+              <ul className="mt-6 space-y-4 text-sm text-center">
+                <li>
+                  <Link
+                    href="#"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    مصر - القاهرة
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    مركز المساعدة
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    مركز المساعدة
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className=" text-white flex items-center justify-center gap-x-5">
+          <div className="">جميع الحقوق محفوظة لدي منصة حصتي</div>
+          <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+          <Link href="#" className="">
+            سياسة الخصوصية
+          </Link>
+          <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+          <Link href="#" className="">
+            الشروط والأحكام
+          </Link>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default Footer;
