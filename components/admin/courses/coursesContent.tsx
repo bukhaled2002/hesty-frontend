@@ -29,7 +29,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { extractDriveFileId } from "@/lib/helper/driveImage";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 type Props = {};
 
 function AdminCoursesContent({}: Props) {
@@ -90,7 +90,7 @@ function AdminCoursesContent({}: Props) {
                 <div className="h-60 relative">
                   <Image
                               alt={course.name}
-                              src={course.img_url ? `https://drive.google.com/uc?export=view&id=${extractDriveFileId(course.img_url)}` : "/images/card-bg-2.webp"}
+                              src={course.img_url ? transformGoogleDriveUrl(course.img_url) : "/images/card-bg-2.webp"}
           
                     width={500}
                     height={500}

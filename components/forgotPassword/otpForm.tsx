@@ -109,7 +109,7 @@ function OtpForm({ email }: Props) {
         alt="logo"
         width={150}
         height={150}
-        className="absolute top-0 start-0"
+        className="absolute top-0 start-0 sm:size-[150px] size-[100px]"
       />
       <div className="w-full">
         <h1 className="text-xl text-[#7B758C] font-bold sm:text-2xl text-center mb-6">
@@ -148,7 +148,7 @@ function OtpForm({ email }: Props) {
             <div className="flex items-center justify-between">
               <Button
                 type="submit"
-                className=" inline-block rounded-lg bg-primary px-5 py-3 text-base font-medium text-white w-full h-14"
+                className=" inline-block rounded-lg bg-primary px-5 py-3 text-base font-medium text-white w-full sm:h-14 h-10"
                 disabled={isSubmitting}
               >
                 تاكيد

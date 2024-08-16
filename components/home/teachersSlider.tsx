@@ -5,16 +5,16 @@ import "swiper/css/scrollbar";
 import { GetTeacher } from "@/services/teacher";
 import Image from "next/image";
 import Link from "next/link";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 type Props = {
   teachers: GetTeacher[];
 };
-
 function TeachersSlider({ teachers }: Props) {
+  console.log('teachers',teachers)
   return (
     <div id="teachersSlider" className="container py-10 space-y-14">
       <div className="title relative w-fit">
-        <h1 className="text-[26px] font-bold">معلمينا</h1>
+        <h1 className="sm:text-[26px] text-[22px] font-bold">معلمينا</h1>
         <div className="title-underline" />
       </div>
       <Swiper
@@ -48,7 +48,7 @@ function TeachersSlider({ teachers }: Props) {
             <SwiperSlide className="space-y-1.5" key={index}>
               <Link href={`/teachers/${teacher.id}`}>
                 <Image
-                  src={teacher.img_url?.trim()}
+                  src={transformGoogleDriveUrl(teacher.img_url?.trim())}
                   alt={teacher.fullName}
                   width={200}
                   height={200}

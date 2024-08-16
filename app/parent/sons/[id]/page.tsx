@@ -4,7 +4,7 @@ import { getSon } from "@/services/parent/sons";
 import { Users } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 export const metadata: Metadata = {
   title: "بيانات الطالب - ولي امر",
   description: "بيانات الطالب - ولي امر في موقع حصتي",
@@ -26,7 +26,7 @@ async function ParentSon({ params }: Props) {
         <section className="flex items-center justify-between">
           <div className="flex items-center gap-x-5">
             <Image
-              src={son.img_url?.trim() || "/images/defaultAvatar.webp"}
+              src={transformGoogleDriveUrl(son.img_url) || "/images/defaultAvatar.webp"}
               alt={son.firstName}
               width={100}
               height={100}

@@ -3,7 +3,7 @@ import { getUserByToken } from "@/services/profile";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 function User() {
   const { data } = useQuery({
     queryKey: ["user"],
@@ -23,7 +23,7 @@ function User() {
         unoptimized
         src={
           data.img_url !== undefined
-            ? data.img_url.trim()
+            ? transformGoogleDriveUrl(data.img_url)
             : "/images/defaultAvatar.webp"
         }
       />

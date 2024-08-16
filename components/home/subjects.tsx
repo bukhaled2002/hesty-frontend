@@ -10,7 +10,7 @@ async function Subjects({}: Props) {
   return (
     <div className="container py-10 space-y-14">
       <div className="title relative w-fit">
-        <h1 className="text-[26px] font-bold">المواد الدراسية</h1>
+        <h1 className="sm:text-[26px] text-[22px] font-bold">المواد الدراسية</h1>
         <div className="title-underline" />
       </div>
       <HoverEffect items={subjects.data} />

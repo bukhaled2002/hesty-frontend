@@ -13,6 +13,7 @@ import { isAxiosError } from "axios";
 import Image from "next/image";
 import { useState } from "react";
 import{extractDriveFileId} from "@/lib/helper/driveImage";
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 export const columns: ColumnDef<GetCharageRequest>[] = [
   {
     accessorKey: "img_url",
@@ -22,9 +23,7 @@ export const columns: ColumnDef<GetCharageRequest>[] = [
         <Image
           src={
             row.original.student.img_url
-              ? `https://drive.google.com/uc?export=view&id=${extractDriveFileId(
-                  row.original.student.img_url
-                )}`
+              ? transformGoogleDriveUrl(row.original.student.img_url)
               : "/images/defaultAvatar.webp"
           }
           alt={

@@ -70,7 +70,7 @@ function ForgotPasswordForm({}: Props) {
         alt="logo"
         width={150}
         height={150}
-        className="absolute top-0 start-0"
+        className="absolute top-0 start-0 sm:size-[150px] size-[100px]"
       />
       <div className="w-full">
         <h1 className="text-xl text-[#7B758C] font-bold sm:text-2xl text-center mb-6">
@@ -98,7 +98,7 @@ function ForgotPasswordForm({}: Props) {
             <div className="flex items-center justify-between">
               <Button
                 type="submit"
-                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full h-12"
+                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full sm:h-12 h-10"
                 disabled={isSubmitting}
               >
                 ارسال

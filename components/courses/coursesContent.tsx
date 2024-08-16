@@ -24,7 +24,7 @@ function CoursesContent({ courses }: Props) {
     <div>
       {courses.data.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+          <div className="grid grid-cols-1 gap-4 xl:grid-cols-3 md:grid-cols-2 lg:gap-8">
             {courses.data.map((course) => {
               return <CourseCardOne course={course} key={course.id} />;
             })}

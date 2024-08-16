@@ -75,45 +75,47 @@ function WalletContent({}: Props) {
 
   return (
     <div className="container py-8 font-bold text-base">
-      <div className="grid grid-cols-9 gap-x-6">
-        <div className="col-span-3">
+      <div className="lg:grid grid-cols-9 gap-x-6 lg:space-y-0 space-y-6">
+        <div className="xl:col-span-3 col-span-4">
           <div className="flex items-center gap-x-[14px] mb-[14px]">
-            <h1 className="text-[22px] text-[#121212] font-bold">محفظتي</h1>
+            <h1 className="sm:text-[22px] text-lg text-[#121212] font-bold">محفظتي</h1>
             <Image
               src="/icons/wallet.webp"
+              className="sm:size-[30px] h-6 w-7"
               width={30}
               height={30}
               alt="wallet"
             />
           </div>
-          <div className="border-[1.04px] border-[#00000026] px-[23px] py-[25px] rounded-[10px] mb-4">
-            <div className="flex items-center justify-between mb-7">
-              <div className="text-[#121212] font-bold text-[26px]">
+          <div className="border-[1.04px] border-[#00000026] px-4 sm:px-[23px] py-5 sm:py-[25px] rounded-[10px] mb-4">
+            <div className="flex items-center justify-between sm:flex-row flex-col gap-4 mb-7">
+              <div className="text-[#121212] font-bold text-xl sm:text-[26px]">
                 الرصيد المتاح
               </div>
-              <div className="text-[#F65428] font-bold text-3xl ">
+              <div className="text-[#F65428] font-bold sm:text-3xl text-2xl">
                 {walletData?.wallet.balance} جنيه
               </div>
             </div>
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
               <DialogTrigger asChild>
-                <Button size="lg" className="text-lg">
+                <Button size="lg" className="text-lg sm:w-fit w-full">
                   شحن الرصيد
                 </Button>
               </DialogTrigger>
               <DialogContent className="w-[650px] max-w-[90%] rounded-[22.317px] p-5 lg:p-20">
-                <div className="flex items-center gap-x-2.5">
-                  <h1 className="text-[#000] font-bold text-[22px]">
+                <div className="flex items-center gap-x-2.5 sm:justify-start justify-between">
+                  <h1 className="text-[#000] font-bold text-lg sm:text-[22px]">
                     اشحن علي محفظة فودافون 01066402706
                   </h1>
                   <Image
                     src="/icons/vodafone.svg"
+                    className="sm:size-[42px] size-6"
                     width={42}
                     height={42}
                     alt="vodafone"
                   />
                 </div>
-                <p className="text-[#121212B2] text-base font-semibold mb-8">
+                <p className="text-[#121212B2] text-sm sm:text-base font-semibold sm:mb-8">
                   هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
                   توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذ
                 </p>
@@ -159,7 +161,7 @@ function WalletContent({}: Props) {
                     <div className="flex items-center">
                       <Button
                         type="submit"
-                        className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full h-12"
+                        className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full sm:h-12"
                         disabled={isSubmitting}
                       >
                         تحقق من عملية الشحن
@@ -170,19 +172,19 @@ function WalletContent({}: Props) {
               </DialogContent>
             </Dialog>
           </div>
-          <p className="text-lg text-[#121212B2] font-semibold leading-[27px]">
+          <p className="sm:text-lg text-[#121212B2] font-semibold leading-[27px]">
             هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
             النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد
             من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
           </p>
         </div>
-        <div className="col-span-6">
-          <h1 className="text-[22px] text-[#121212] font-bold mb-[14px]">
+        <div className="xl:col-span-6 col-span-5">
+          <h1 className="sm:text-[22px] text-lg text-[#121212] font-bold mb-[14px]">
             العمليات الاخيرة
           </h1>
-          {walletData && walletData?.requestPayment?.length > 0 ? (
-            <div className="border-[1.04px] border-[#00000026] pb-7 px-[25px] rounded-[10px] space-y-[25px] divide-y-2">
-              {walletData?.requestPayment.map((payment) => {
+          {walletData && walletData?.transactions?.length > 0 ? (
+            <div className="border-[1.04px] border-[#00000026] pb-7 sm:px-[25px] px-5 rounded-[10px] space-y-5 sm:space-y-[25px] divide-y-2">
+              {walletData?.transactions.map((payment) => {
                 return (
                   <div key={payment.id} className="pt-[25px]">
                     <div className="flex items-center justify-between mb-[14px]">

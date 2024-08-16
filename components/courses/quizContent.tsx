@@ -99,32 +99,32 @@ function QuizContent({ courseId, lectureId, quizId }: Props) {
     );
   return (
     <div className="container py-10">
-      <div className="flex items-center justify-between">
-        <div className="text-lg text-[#121212B2]/70 font-medium flex items-center gap-x-[13px]">
+      <div className="flex items-center justify-between flex-wrap gap-7">
+        <div className="md:text-lg text-[#121212B2]/70 font-medium flex items-center gap-x-[13px]">
           الاختبار:{" "}
-          <span className="text-[#5949BE] text-2xl font-bold">
+          <span className="text-[#5949BE] md:text-2xl font-bold">
             {quiz?.title}
           </span>
         </div>
-        <div className="text-lg text-[#121212B2]/70 font-medium flex items-center gap-x-[13px]">
+        <div className="md:text-lg text-[#121212B2]/70 font-medium flex items-center gap-x-[13px]">
           الوقت:{" "}
-          <span className="text-[#5949BE] text-2xl font-bold">
+          <span className="text-[#5949BE] md:text-2xl font-bold">
             {timer} دقيقة
           </span>
         </div>
-        <div className="text-lg text-[#121212B2]/70 font-medium flex items-center gap-x-[13px]">
+        <div className="md:text-lg text-[#121212B2]/70 font-medium flex items-center gap-x-[13px]">
           عدد الاسئلة:{" "}
-          <span className="text-[#5949BE] text-2xl font-bold">
+          <span className="text-[#5949BE] md:text-2xl font-bold">
             {quiz?.questions.length}
           </span>
         </div>
       </div>
-      <Separator className="my-10" />
+      <Separator className="sm:my-10 my-5" />
       <Form {...form}>
         <form onSubmit={form.handleSubmit((data) => SubmitQuiz(data))}>
           {quiz?.questions.map((question, index) => (
             <div key={question.id}>
-              <h1 className="text-2xl text-[#000] font-bold mb-[42px]">
+              <h1 className="sm:text-2xl text-xl text-[#000] font-bold mb-6 sm:mb-[42px]">
                 {index + 1}: {question.question}
               </h1>
               <FormField
@@ -147,14 +147,14 @@ function QuizContent({ courseId, lectureId, quizId }: Props) {
                         className="flex flex-col"
                       >
                         {question.answers.map((answer) => (
-                          <FormItem key={answer.id} className="mb-6">
+                          <FormItem key={answer.id} className="sm:mb-6 mb-3">
                             <FormControl>
                               <RadioGroupItem
                                 className="me-4"
                                 value={answer.id}
                               />
                             </FormControl>
-                            <FormLabel className="text-[#141414] text-2xl font-bold cursor-pointer">
+                            <FormLabel className="text-[#141414] sm:text-2xl text-xl font-bold cursor-pointer">
                               {answer.text}
                             </FormLabel>
                           </FormItem>
@@ -165,13 +165,13 @@ function QuizContent({ courseId, lectureId, quizId }: Props) {
                   </FormItem>
                 )}
               />
-              <Separator className="my-10" />
+              <Separator className="sm:my-10 my-5" />
             </div>
           ))}
           <Button
             size="lg"
             disabled={isSubmitting}
-            className="mt-5"
+            className="sm:w-auto w-full mt-5"
             type="submit"
           >
             {isSubmitting ? "جاري التحميل..." : "تسليم"}

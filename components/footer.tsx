@@ -5,25 +5,26 @@ type Props = {};
 
 function Footer({}: Props) {
   return (
-    <footer className="bg-secondary rounded-t-[30px] mt-[120px]">
-      <div className="container space-y-8 px-4 pt-16 pb-8 sm:px-6 lg:space-y-20 lg:px-8">
+    <footer className="bg-secondary rounded-t-[30px] sm:mt-[120px] mt-16">
+      <div className="container space-y-8 sm:pt-16 pt-8 pb-8 lg:space-y-20 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3">
           <div>
             <div className="text-teal-600">
               <Image
                 alt="Logo"
+                className="sm:mx-0 mx-auto"
                 height={63.87}
                 src="/white-logo.svg"
                 width={125}
               />
             </div>
 
-            <p className="mt-4 max-w-xs text-white/80">
+            <p className="mt-4 sm:max-w-xs text-white/80 sm:text-start text-center">
               هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
               هذا
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:col-span-3 lg:grid-cols-3  mt-10 gap-5">
             <div>
               <p className="text-white font-bold text-xl text-center">
                 مركز المساعدة
@@ -122,7 +123,7 @@ function Footer({}: Props) {
           </div>
         </div>
 
-        <div className=" text-white flex items-center justify-center gap-x-5">
+        <div className=" text-white flex items-center justify-center gap-x-5 sm:flex-row flex-col-reverse gap-y-3">
           <div className="">جميع الحقوق محفوظة لدي منصة حصتي</div>
           <div className="w-2.5 h-2.5 rounded-full bg-primary" />
           <Link href="#" className="">

@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 export const HoverEffect = ({
   items,
   className,
@@ -14,7 +14,6 @@ export const HoverEffect = ({
   className?: string;
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
     <div
       className={cn(
@@ -54,8 +53,8 @@ export const HoverEffect = ({
             )}
           >
             <Image
-              src={item.img_url?.trim() || "/images/no-image.png"}
-              className="max-w-[80px] max-h-[80px] size-full object-contain"
+              src={transformGoogleDriveUrl(item.img_url?.trim() || "/images/no-image.png")}
+              className="max-w-[80px] max-h-[80px] size-full object-cover"
               width={100}
               height={100}
               alt={item.name + " image"}

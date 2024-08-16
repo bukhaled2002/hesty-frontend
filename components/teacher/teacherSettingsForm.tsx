@@ -34,6 +34,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Separator } from "../ui/separator";
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 
 type Props = {};
 
@@ -174,7 +175,7 @@ function TeacherSettingsForm({}: Props) {
         >
           <div className="image w-fit m-auto mb-5 md:mb-10">
             <Image
-              src={myData?.img_url?.trim() || "/images/camera.svg"}
+              src={transformGoogleDriveUrl(myData?.img_url) || "/images/camera.svg"}
               alt="Profile Picture"
               width={150}
               height={150}

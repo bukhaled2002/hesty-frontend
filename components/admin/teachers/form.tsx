@@ -35,7 +35,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 type Props = {
   teacher?: GetSingleTeacherResponse;
   id?: string;
@@ -188,7 +188,7 @@ function AdminTeachersForm({ id }: Props) {
         >
           <div className="image w-fit m-auto mb-5 md:mb-10">
             <Image
-              src={teacher?.img_url?.trim() || "/images/camera.svg"}
+              src={transformGoogleDriveUrl(teacher?.img_url) || "/images/camera.svg"}
               alt="Profile Picture"
               width={150}
               height={150}

@@ -10,14 +10,15 @@ const nextConfig = {
       "png.pngtree.com",
       "img.freepik.com",
       "cdn.dribbble.com",
+      "www.google.com"
     ],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "drive.google.com",
         port: "",
-        pathname: "/uc?export=view&id=**",
-      },
+        pathname: "/uc**",
+          },
       {
         protocol: "https",
         hostname: "stepbysteplistening.com",

@@ -4,7 +4,7 @@ import { GetMyCourse } from "@/services/teacher";
 import { Clock, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 type Props = {
   course: GetMyCourse;
   showBtn?: boolean;
@@ -12,6 +12,8 @@ type Props = {
 };
 
 function CourseCardTwo({ course, showBtn, className }: Props) {
+  const courseImg = transformGoogleDriveUrl(course.img_url?.trim() ?? "/images/card-bg-2.webp")
+  console.log('course',course)
   return (
     <div
       className={cn("block rounded-lg border border-[#00000026]", className)}
@@ -20,7 +22,7 @@ function CourseCardTwo({ course, showBtn, className }: Props) {
         <div className="h-60 relative">
           <Image
             alt={course.name + " course"}
-            src={course.img_url?.trim() ?? "/images/card-bg-2.webp"}
+            src={courseImg}
             width={500}
             height={500}
             className="h-full w-full rounded-md object-cover"

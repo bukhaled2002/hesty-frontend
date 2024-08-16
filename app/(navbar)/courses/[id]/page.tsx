@@ -9,7 +9,7 @@ import { getCourse } from "@/services/public/courses";
 import { Clock, RefreshCcw, UsersIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 type Props = {
   params: { id: string };
 };
@@ -37,16 +37,16 @@ async function Course({ params }: Props) {
 
   return (
     <>
-      <section className="overflow-hidden bg-[#5949be] relative z-10 py-16 text-white">
-        <div className="container flex items-center justify-between">
-          <div className="basis-[55%]">
+      <section className="overflow-hidden bg-[#5949be] relative z-10 sm:py-16 py-10 text-white">
+        <div className="container flex gap-5 lg:flex-row flex-col items-center justify-between">
+          <div className="w-full">
             <h1 className="text-xl mb-[16px] lg:text-[34px] font-bold max-w-96 !leading-[51px]">
               {course.name}
             </h1>
-            <p className="text-white/80 text-lg leading-[27px] mb-10">
+            <p className="text-white/80 text-lg leading-[27px] sm:mb-10 mb-5">
               {course.description}
             </p>
-            <div className="flex items-center gap-x-20 mb-11">
+            <div className="flex items-center md:gap-x-20 gap-x-10 mb-11">
               <div className="text-base font-normal">
                 <UsersIcon size={20} className="inline-block me-1" />{" "}
                 {course._count.students} طالب
@@ -64,22 +64,22 @@ async function Course({ params }: Props) {
               <Link
                 href={`/courses/${course.id}/lecture/${course.chapters[0].lectures[0].id}`}
               >
-                <Button className="bg-primary text-white w-full py-6 font-bold text-xl">
+                <Button className="bg-primary text-white w-full sm:py-6 py-3 font-bold  sm:text-xl">
                   تابع الدورة
                 </Button>
               </Link>
             ) : (
               <Link href={`/checkout/${course.id}`}>
-                <Button className="bg-primary text-white w-full py-6 font-bold text-xl">
+                <Button className="bg-primary text-white w-full sm:py-6 py-3 font-bold  sm:text-xl">
                   شراء مقابل {course.price_after_discount} جنيه مصري
                 </Button>
               </Link>
             )}
           </div>
-          <div className="relative max-w-[500px] border rounded-lg overflow-hidden basis-[35%]">
+          <div className="relative sm:min-w-[500px] lg:max-w-[500px] w-full lg:max-h-[300px] sm:max-h-[400px] max-h-[300px] h-full border rounded-lg overflow-hidden ">
             <Image
-              src={course.img_url.trim()}
-              className="rounded-lg object-cover w-full"
+              src={transformGoogleDriveUrl(course.img_url.trim())}
+              className="rounded-lg object-cover object-[75%_25%] w-full"
               alt="hero"
               width={500}
               height={300}
@@ -92,8 +92,8 @@ async function Course({ params }: Props) {
       </section>
       <section className="container py-10">
         <div className="title relative w-fit mb-8">
-          <h1 className="text-3xl font-bold mb-2">محتوي المادة</h1>
-          <h3 className="text-xl text-black/40">{lecturesLength} حصص</h3>
+          <h1 className="sm:text-3xl text-xl font-bold mb-2">محتوي المادة</h1>
+          <h3 className="sm:text-xl text-black/40">{lecturesLength} حصص</h3>
         </div>
         {course.chapters.length > 0 ? (
           <Accordion type="multiple" className="border border-black/10">
@@ -102,7 +102,7 @@ async function Course({ params }: Props) {
                 <AccordionItem
                   key={index}
                   value={chapter.name}
-                  className="px-5 py-0.5"
+                  className="sm:px-5 px-2.5 py-0.5"
                 >
                   <AccordionTrigger className="font-bold text-xl [&[data-state=open]>img]:rotate-180">
                     {chapter.name}

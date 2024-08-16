@@ -45,7 +45,7 @@ function PayForm({ courseId }: Props) {
       <Button
         disabled={isLoading}
         onClick={handlePay}
-        className="px-6 text-lg rounded-lg w-full py-7"
+        className="px-6 text-lg rounded-lg w-full sm:py-7 py-3"
       >
         {isLoading ? "جاري الدفع..." : "ادفع الآن"}
       </Button>

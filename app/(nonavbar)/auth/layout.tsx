@@ -7,41 +7,43 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <section className="relative flex lg:flex-row flex-col gap-10 h-screen lg:items-center px-5 lg:px-10 py-5 overflow-hidden ">
-      <main className="w-full lg:w-1/2 flex items-center justify-center flex-col relative h-full">
+    <section className="relative flex lg:flex-row flex-col gap-10 h-full items-center px-4 xl:px-10 py-5 overflow-hidden ">
+      <main className="w-full lg:w-1/2 flex h-full items-center justify-center flex-col relative">
         {children}
       </main>
       <FollowerPointerCard
-        className="hidden lg:block relative w-full h-full lg:w-1/2 bg-secondary p-10 rounded-[37px] text-white z-20"
+        className="hidden lg:block relative w-full h-full lg:w-1/2 bg-secondary p-10 rounded-[37px] text-white z-20 flex-1"
         // pointerStyling="text-[#FDD340] stroke-white"
         // bgStyling="bg-[#FDD340] text-black px-6 py-1 text-sm border border-white"
         title={<TitleComponent />}
       >
-        <div>
-          <h1 className="font-extrabold text-[38px] mb-5">
+        <div className="flex flex-col justify-between h-full">
+          <div>
+          <h1 className="font-extrabold xl:text-[38px] text-3xl mb-5">
             عن <span className="text-primary">منصة حصتي التعليمية</span>
           </h1>
-          <p className="text-[22px] font-medium leading-normal w-[90%]">
+          <p className="xl:text-[22px] text-lg font-medium leading-normal w-[90%]">
             هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
             النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد
             من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.هذا
             النص ه
           </p>
-        </div>
+          </div>
         <Image
           src="/images/auth-illustration.webp"
           alt="hero"
-          className="w-[717.33px] h-[590px] z-10"
+          className="xl:w-[717.33px] xl:h-[538px] z-10"
           width={800}
           height={800}
         />
         <Image
           src="/images/Vector-3.webp"
           alt="hero"
-          className="absolute end-0 top-0 z-10"
+          className="absolute end-0 top-0 z-10 w-full h-full object-cover"
           width={700}
           height={700}
         />
+        </div>
       </FollowerPointerCard>
     </section>
   );

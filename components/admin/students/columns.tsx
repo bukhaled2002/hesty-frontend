@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { extractDriveFileId } from "@/lib/helper/driveImage";
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 
 // function extractDriveFileId(url) {
 //   const regex = /\/d\/([^\/]+)\//;
@@ -36,7 +37,7 @@ export const columns: ColumnDef<GetStudent>[] = [
     cell: ({ row }) => (
       <div>
         <Image
-          src={row.original.img_url ? `https://drive.google.com/uc?export=view&id=${extractDriveFileId(row.original.img_url)}` : "/images/defaultAvatar.webp"}
+          src={row.original.img_url ? transformGoogleDriveUrl(row.original.img_url) : "/images/defaultAvatar.webp"}
           alt={row.original.firstName + " " + row.original.lastName}
           width={200}
           height={200}

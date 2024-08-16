@@ -5,6 +5,7 @@ import { Edit, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import{extractDriveFileId} from "@/lib/helper/driveImage";
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 export const columns: ColumnDef<GetSon>[] = [
   {
     accessorKey: "img_url",
@@ -15,9 +16,7 @@ export const columns: ColumnDef<GetSon>[] = [
  
           src={
             row.original.img_url
-              ? `https://drive.google.com/uc?export=view&id=${extractDriveFileId(
-                  row.original.img_url
-                )}`
+              ? transformGoogleDriveUrl(row.original.img_url)
               : "/images/defaultAvatar.webp"
           }
 

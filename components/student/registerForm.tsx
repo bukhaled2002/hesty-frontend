@@ -105,7 +105,7 @@ function StudentRegisterForm({}: Props) {
           alt="logo"
           width={150}
           height={150}
-          className="absolute top-0 start-0"
+          className=" sm:size-[150px] size-[100px]"
         />
       </Link>
       <div className="w-full">
@@ -258,13 +258,13 @@ function StudentRegisterForm({}: Props) {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full h-12"
+                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full sm:h-12 h-10"
               >
                 انشاء حساب
               </Button>
             </div>
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-[#7B758C]">
+            <div className="flex items-center justify-between sm:flex-row flex-col gap-3">
+              <div className="sm:text-sm text-xs sm:text-start text-center text-[#7B758C]">
                 تسجيل الدخول{" "}
                 <Link
                   href="/auth/parent/register"
@@ -280,7 +280,7 @@ function StudentRegisterForm({}: Props) {
                   كمعلم
                 </Link>
               </div>
-              <div className="text-sm text-[#7B758C]">
+              <div className="sm:text-sm text-xs sm:text-start text-center text-[#7B758C]">
                 لديك حساب بالفعل؟{" "}
                 <Link
                   href="/auth/student/login"

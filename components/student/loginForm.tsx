@@ -91,7 +91,7 @@ function StudentLoginForm({}: Props) {
           alt="logo"
           width={150}
           height={150}
-          className="absolute top-0 start-0"
+          className="absolute top-0 start-0 sm:size-[150px] size-[100px]"
         />
       </Link>
       <div className="w-full">
@@ -151,33 +151,33 @@ function StudentLoginForm({}: Props) {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full h-12"
+                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full sm:h-12 h-10"
               >
                 تسجيل الدخول
               </Button>
             </div>
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-[#7B758C]">
+            <div className="flex items-center justify-between sm:flex-row flex-col gap-3">
+              <div className="sm:text-sm text-xs sm:text-start text-center text-[#7B758C]">
                 تسجيل الدخول{" "}
                 <Link
                   href="/auth/parent/login"
-                  className="text-secondary font-bold"
+                  className=" sm:text-sm text-xs sm:text-start text-center text-secondary font-bold"
                 >
                   كولي امر
                 </Link>{" "}
                 او{" "}
                 <Link
                   href="/auth/teacher/login"
-                  className="text-secondary font-bold"
+                  className=" sm:text-sm text-xs sm:text-start text-center text-secondary font-bold"
                 >
                   كمعلم
                 </Link>
               </div>
-              <div className="text-sm text-[#7B758C]">
+              <div className="sm:text-sm text-xs sm:text-start text-center text-[#7B758C]">
                 ليس لديك حساب؟{" "}
                 <Link
                   href="/auth/student/register"
-                  className="text-secondary font-bold"
+                  className=" sm:text-sm text-xs sm:text-start text-center text-secondary font-bold"
                 >
                   انشاء حساب
                 </Link>

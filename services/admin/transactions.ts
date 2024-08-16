@@ -9,6 +9,7 @@ export type BaseTransaction = {
 };
 
 export type GetTransaction = BaseTransaction & {
+  img_url:string
   id: string;
   course: {
     name: string;

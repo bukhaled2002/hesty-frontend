@@ -4,7 +4,7 @@ import { Clock, Users } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 export const metadata: Metadata = {
   title: "الطالب - Admin",
   description: "الطالب - Admin في موقع حصتي",
@@ -26,7 +26,7 @@ async function AdminSingleStudent({ params }: Props) {
         <section className="flex items-center justify-between">
           <div className="flex items-center gap-x-5">
             <Image
-              src={student.img_url?.trim() || "/images/defaultAvatar.webp"}
+              src={transformGoogleDriveUrl(student.img_url?.trim()) || "/images/defaultAvatar.webp"}
               alt={student.firstName}
               width={100}
               height={100}
@@ -72,7 +72,7 @@ async function AdminSingleStudent({ params }: Props) {
                     <div className="h-60 relative">
                       <Image
                         alt=""
-                        src={course.img_url?.trim() ?? "/images/card-bg-2.webp"}
+                        src={transformGoogleDriveUrl(course.img_url) ?? "/images/card-bg-2.webp"}
                         width={500}
                         height={500}
                         className="h-full w-full rounded-md object-cover"

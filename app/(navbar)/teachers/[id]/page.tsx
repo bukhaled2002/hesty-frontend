@@ -1,5 +1,6 @@
 import CourseCardTwo from "@/components/cards/courseCard-2";
 import Pagination from "@/components/pagination";
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 import { getTeacher } from "@/services/teacher";
 import Image from "next/image";
 
@@ -26,27 +27,27 @@ async function Teacher({ params }: Props) {
   const nextPage = teacher.courses.meta_data.nextPage;
   const previousPage = teacher.courses.meta_data.previousPage;
   console.log(teacher);
-
+  console.log('teacher.courses.data',teacher.courses.data)
   return (
     <>
-      <section className="overflow-hidden bg-[#5949be] relative z-10 py-16 text-white">
-        <div className="container space-y-10">
+      <section className="overflow-hidden bg-[#5949be] relative z-10 sm:py-16 py-8 text-white">
+        <div className="container md:space-y-10 space-y-6">
           <div className="flex items-center gap-x-5">
             <Image
-              src={teacher.img_url.trim() ?? "/images/teacher.webp"}
+              src={transformGoogleDriveUrl(teacher.img_url.trim() ?? "/images/teacher.webp")}
               width={200}
               height={200}
-              className="w-[125px] h-[125px] rounded-full object-cover size-full"
+              className="md:size-[125px] size-20 rounded-full object-cover object-[75%_25%]"
               alt="teacher"
             />
             <div>
-              <h1 className="text-2xl mb-3">{teacher.fullName}</h1>
-              <h3 className="text-white/70">معلم {teacher.subject.name}</h3>
+              <h1 className="sm:text-2xl text-lg sm:mb-3 mb-1.5">{teacher.fullName}</h1>
+              <h3 className="text-white/70 sm:text-base text-sm">معلم {teacher.subject.name}</h3>
             </div>
           </div>
           <div>
-            <h1 className="text-xl mb-3">عن المعلم</h1>
-            <p className="text-white/80 text-base">{teacher.info}</p>
+            <h1 className="sm:text-xl sm:mb-3 mb-1.5">عن المعلم</h1>
+            <p className="text-white/80 sm:text-base text-sm">{teacher.info}</p>
           </div>
           <div className="flex items-center gap-x-6 ">
             <div>
@@ -69,7 +70,7 @@ async function Teacher({ params }: Props) {
           <h1 className="text-2xl font-bold">الدورات المتاحة</h1>
           <div className="title-underline" />
         </div>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 xl:grid-cols-4 lg:grid-cols-3 lg:gap-8">
           {teacher.courses.data.map((course) => (
             <CourseCardTwo showBtn={true} course={course} key={course.id} />
           ))}

@@ -51,7 +51,7 @@ export default function RootLayout({
         <body className={CairoFont.className}>
           <AuthSessionProvider>
             <QueryProvider>
-              <main>{children}</main>
+              <main className="h-full">{children}</main>
               <Toaster />
             </QueryProvider>
           </AuthSessionProvider>

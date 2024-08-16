@@ -2,7 +2,7 @@ import CourseCardTwo from "@/components/cards/courseCard-2";
 import { getTeacher } from "@/services/admin/teachers";
 import { Metadata } from "next";
 import Image from "next/image";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 export const metadata: Metadata = {
   title: "المعلم - Admin",
   description: "المعلم - Admin في موقع حصتي",
@@ -22,7 +22,7 @@ async function AdminSingleTeacher({ params }: Props) {
       <div className="bg-white py-12 px-11 rounded-[12px] space-y-[61px]">
         <div className="flex items-center gap-x-5">
           <Image
-            src={teacher.img_url?.trim() || "/images/defaultAvatar.webp"}
+            src={transformGoogleDriveUrl(teacher.img_url) || "/images/defaultAvatar.webp"}
             alt={teacher.fullName}
             width={100}
             height={100}

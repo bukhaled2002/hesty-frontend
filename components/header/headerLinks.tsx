@@ -25,14 +25,14 @@ function HeaderLinks({}: Props) {
   const pathname = usePathname();
 
   return (
-    <div className="flex-1 flex items-center justify-center text-base font-medium gap-x-6">
+    <div className="lg:flex-1 flex items-center justify-center lg:flex-row flex-col text-base font-medium gap-6 lg:mt-0 mt-5">
       {links.map((link) => {
         return (
           <Link
             key={link.title}
             href={link.href}
             className={cn(
-              "text-[#121212] hover:text-primary relative",
+              "text-[#121212] hover:text-primary relative lg:w-auto w-full",
               pathname === link.href && "text-primary"
             )}
           >

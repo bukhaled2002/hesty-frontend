@@ -90,7 +90,7 @@ function TeacherLoginForm({}: Props) {
           alt="logo"
           width={150}
           height={150}
-          className="absolute top-0 start-0"
+          className="absolute top-0 start-0 sm:size-[150px] size-[100px]"
         />
       </Link>
       <div className="w-full">
@@ -150,7 +150,7 @@ function TeacherLoginForm({}: Props) {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full h-12"
+                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full sm:h-12 h-10"
               >
                 تسجيل الدخول
               </Button>

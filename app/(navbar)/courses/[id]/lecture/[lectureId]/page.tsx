@@ -16,7 +16,7 @@ import { ChevronLeft, HelpCircle, Trophy, VideoIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
-
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 export const metadata: Metadata = {
   title: "الدرس",
   description: "صفحة الدرس في موقع حصتي",
@@ -38,13 +38,13 @@ async function SingleLecture({ params }: Props) {
         <Separator orientation="vertical" className="h-6 w-0.5 rounded" />
         <div>{course.subject.name}</div>
       </div>
-      <div className="relative pt-10">
-        <section className="grid grid-cols-11 gap-x-10 min-h-full mb-16 pt-5">
-          <div className="col-span-8 space-y-6 h-full">
-            <LectureContent courseId={courseId} lectureId={lectureId} />
+      <div className="relative sm:pt-10">
+        <section className="lg:grid grid-cols-11 gap-x-10 min-h-full sm:mb-16 mb-12 pt-5">
+          <div className="xl:col-span-8 lg:col-span-7 col-span-11 sm:space-y-6 space-y-3 h-full">
+            <LectureContent watched={courseProgress.videosWatched} total={courseProgress.totalVideos} courseId={courseId} lectureId={lectureId} />
           </div>
-          <div className="col-span-3 space-y-6 h-full">
-            <div className="flex items-center justify-between">
+          <div className="xl:col-span-3 lg:col-span-4 col-span-11 space-y-6 h-full">
+            <div className="lg:flex hidden items-center justify-between">
               <div>
                 مكتمل {courseProgress.videosWatched} /{" "}
                 {courseProgress.totalVideos}
@@ -53,7 +53,7 @@ async function SingleLecture({ params }: Props) {
             </div>
             <Accordion
               type="multiple"
-              className="border rounded-[12px] h-[500px] p-4 overflow-y-auto"
+              className="border rounded-[12px] lg:h-[500px] h-full p-4 overflow-y-auto"
             >
               {course.chapters.map((chapter, index) => {
                 return (
@@ -89,7 +89,7 @@ async function SingleLecture({ params }: Props) {
                               )}
                             >
                               <VideoIcon size={22} />{" "}
-                              <div className="title">{lecture.title}</div>
+                              <div className="title sm:text-base text-sm">{lecture.title}</div>
                             </Link>
                             {lecture.quizizz.map((quiz) => {
                               return (
@@ -101,7 +101,7 @@ async function SingleLecture({ params }: Props) {
                                   )}
                                 >
                                   <HelpCircle size={22} />{" "}
-                                  <div className="title">{quiz.title}</div>
+                                  <div className="title sm:text-base text-sm">{quiz.title}</div>
                                 </Link>
                               );
                             })}
@@ -116,41 +116,43 @@ async function SingleLecture({ params }: Props) {
           </div>
         </section>
       </div>
-      <section className="space-y-7 border-b-2 pb-20 mb-[60px]">
-        <div className="flex items-center gap-x-5">
-          <div className="text-primary bg-primary/10 rounded-full text-base px-4 py-2.5 w-full max-w-[180px] text-center">
+      <section className="space-y-7 border-b-2 sm:pb-20 pb-12 mb-10 sm:mb-[60px]">
+        <div className="flex items-center gap-x-2.5 sm:gap-x-5">
+          <div className="text-primary bg-primary/10 rounded-full text-base px-4 py-2.5 sm:w-full w-fit max-w-[180px] text-center">
             {course.class.name}
           </div>
-          <div className="text-secondary bg-secondary/10 rounded-full text-base px-4 py-2.5 w-full max-w-[180px] text-center">
+          <div className="text-secondary bg-secondary/10 rounded-full text-base px-4 py-2.5 sm:w-full w-fit max-w-[180px] text-center">
             {course.subject.name}
           </div>
         </div>
-        <h1 className="text-3xl font-bold mt-5">مقدمة عن {course.name}</h1>
-        <p className="text-xl text-[#121212B2]/70 font-semibold leading-[33px]">
+        <h1 className="sm:text-3xl text-xl font-bold sm:mt-5 mt-3">مقدمة عن {course.name}</h1>
+        <p className="sm:text-xl text-lg text-[#121212B2]/70 font-semibold leading-snug sm:leading-[33px]">
           {course.description}
         </p>
       </section>
-      <section className="flex items-center justify-between">
-        <div className="flex items-center justify-center gap-x-6">
+      <section className="flex items-center justify-between sm:flex-nowrap flex-wrap gap-4">
+        <div className="flex items-center justify-center gap-x-3 sm:gap-x-6">
           <Image
-            src={course.teacher.img_url.trim()}
+            src={transformGoogleDriveUrl(course.teacher.img_url.trim())}
             width={500}
             height={500}
-            className="w-[103px] h-[103px] size-full rounded-full object-contain"
+            className="sm:size-[103px] size-20 rounded-full object-cover object-[75%_25%]"
             alt="teacher"
           />
           <div className="flex flex-col gap-y-1.5">
-            <h1 className="text-2xl font-bold">
+            <h1 className="sm:text-2xl text-lg font-bold">
               مستر {course.teacher.fullName}
             </h1>
-            <h3 className="text-[#6F6F6F] font-medium text-[20px]">
+            <h3 className="text-[#6F6F6F] font-medium sm:text-[20px]">
               معلم {course.class.name}
             </h3>
           </div>
         </div>
-        <Button className="text-lg font-semibold bg-[#F5F5F5] hover:bg-[#6F6F6F] text-[#6F6F6F] hover:text-white py-[10px] px-6">
+        <Link className="sm:w-fit w-full" href={`/teachers/${course.teacherId}`}>
+        <Button className="text-lg font-semibold bg-[#F5F5F5] hover:bg-[#6F6F6F] text-[#6F6F6F] hover:text-white py-[10px] px-6 sm:w-fit w-full">
           الملف الشخصي
         </Button>
+</Link>
       </section>
     </div>
   );

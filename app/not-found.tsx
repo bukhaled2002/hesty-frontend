@@ -4,25 +4,25 @@ import Link from "next/link";
 
 export default function Error() {
   return (
-    <div className="grid h-screen place-content-center -mt-20">
-      <div className="relative w-[900px]">
+    <div className=" h-full flex flex-col items-center justify-center container">
+      <div className="relative">
         <Image
           src="/images/404.webp"
           width={1006}
           height={350}
           alt="404"
-          className="size-full max-w-[1006] max-h-[350]"
+          className="w-full h-auto mb-4"
         />
         <div className="text-center">
-          <h1 className="text-5xl font-bold text-[#121212]">
+          <h1 className="md:text-5xl sm:text-3xl text-2xl font-bold text-[#121212]">
             للأسف هذه الصفحة غير موجودة
           </h1>
-          <p className="text-2xl font-semibold text-black/70 my-5">
+          <p className="md:text-2xl text-lg font-semibold text-black/70 sm:my-5 my-2.5">
             يبدو ان هذه الصفحة قد تم نقلها او حذفت او غير موجودة اساسا
           </p>
-          <div className="w-3/5 m-auto">
+          <div className="sm:w-3/5 w-full m-auto">
             <Link href="/" className="w-full">
-              <Button className="w-full text-[22px] py-6 font-semibold">
+              <Button className="w-full sm:text-[22px] sm:py-6 py-3 font-semibold">
                 الذهاب للصفحة الرئيسية
               </Button>
             </Link>

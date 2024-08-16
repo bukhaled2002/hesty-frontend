@@ -7,7 +7,7 @@ export type GetWalletResponse = {
     createdAt: string;
     updatedAt: string | null;
   };
-  requestPayment: {
+  transactions: {
     id: string;
     reference_number: string;
     amount: number;

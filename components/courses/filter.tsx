@@ -84,11 +84,11 @@ function CoursesFilter({ classes, subjects, teachers }: Props) {
         collapsible
       >
         <AccordionItem value="classes" className="border-0">
-          <AccordionTrigger className="text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] px-6 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
+          <AccordionTrigger className="sm:text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] sm:px-6 px-3 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
             بحث
             <ChevronLeft className="w-6 h-6 shrink-0 transition-transform duration-200 text-[#12121299]" />
           </AccordionTrigger>
-          <AccordionContent className="px-[22px] py-5 space-y-[14px] font-semibold">
+          <AccordionContent className="sm:px-[22px] px-3 py-5 space-y-[14px] font-semibold">
             <Input
               type="text"
               value={name ?? ""}
@@ -105,7 +105,7 @@ function CoursesFilter({ classes, subjects, teachers }: Props) {
         collapsible
       >
         <AccordionItem value="classes" className="border-0">
-          <AccordionTrigger className="text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] px-6 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
+          <AccordionTrigger className="sm:text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] sm:px-6 px-3 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
             الصفوف الدراسية
             <ChevronLeft className="w-6 h-6 shrink-0 transition-transform duration-200 text-[#12121299]" />
           </AccordionTrigger>
@@ -139,7 +139,7 @@ function CoursesFilter({ classes, subjects, teachers }: Props) {
         collapsible
       >
         <AccordionItem value="subjects" className="border-0">
-          <AccordionTrigger className="text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] px-6 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
+          <AccordionTrigger className="sm:text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] sm:px-6 px-3 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
             المواد
             <ChevronLeft className="w-6 h-6 shrink-0 transition-transform duration-200 text-[#12121299]" />
           </AccordionTrigger>
@@ -173,7 +173,7 @@ function CoursesFilter({ classes, subjects, teachers }: Props) {
         collapsible
       >
         <AccordionItem value="teachers" className="border-0">
-          <AccordionTrigger className="text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] px-6 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
+          <AccordionTrigger className="sm:text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] sm:px-6 px-3 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
             المعلمين
             <ChevronLeft className="w-6 h-6 shrink-0 transition-transform duration-200 text-[#12121299]" />
           </AccordionTrigger>

@@ -1,4 +1,5 @@
 "use client";
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 import { GetTransaction } from "@/services/admin/transactions";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
@@ -11,7 +12,9 @@ export const columns: ColumnDef<GetTransaction>[] = [
       <div>
         <Image
           src={
-            row.original.student.img_url?.trim() || "/images/defaultAvatar.webp"
+            row.original.img_url
+              ? transformGoogleDriveUrl(row.original.img_url)
+              : "/images/defaultAvatar.webp"
           }
           alt={row.original.student.firstName + "Image"}
           width={200}

@@ -2,22 +2,25 @@ import { Button } from "@/components/ui/button";
 import { GetCourse } from "@/services/public/courses";
 import Image from "next/image";
 import Link from "next/link";
+import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 
 type Props = {
   course: GetCourse;
 };
 
 function CourseCardOne({ course }: Props) {
+    const courseImg = transformGoogleDriveUrl(course.img_url?.trim() !== null || ""
+    ? course.img_url?.trim()
+    : "/images/placeholder.png"
+)
+  const teacherImg = transformGoogleDriveUrl(course.teacher.img_url?.trim())
+  console.log('course',course)
   return (
     <div className="block rounded-lg border border-[#00000026]">
       <div className="h-48">
         <Link href={`/courses/${course.id}`}>
           <Image
-            src={
-              course.img_url?.trim() !== null || ""
-                ? course.img_url?.trim()
-                : "/images/placeholder.png"
-            }
+            src={courseImg}
             width={500}
             height={500}
             className="size-full max-h-[201px] rounded-md object-cover"
@@ -30,7 +33,7 @@ function CourseCardOne({ course }: Props) {
         className="flex flex-col w-fit m-auto items-center -mt-10"
       >
         <Image
-          src={course.teacher.img_url?.trim()}
+          src={teacherImg}
           width={100}
           height={100}
           className="rounded-full w-[56px] h-[56px] size-full object-cover"
