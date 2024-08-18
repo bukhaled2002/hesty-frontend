@@ -14,6 +14,10 @@ const links = [
     href: "/courses",
   },
   {
+    title: "الكتب الدراسية",
+    href: "/books",
+  },
+  {
     title: "تواصل معنا",
     href: "/contact",
   },

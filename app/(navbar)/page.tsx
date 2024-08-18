@@ -1,3 +1,4 @@
+import Books from "@/components/home/books";
 import Contact from "@/components/home/contact";
 import Courses from "@/components/home/courses";
 import Hero from "@/components/home/hero";
@@ -16,6 +17,7 @@ export default async function Home() {
       <Subjects />
       <Courses />
       <TeachersSlider teachers={teachers} />
+      <Books />
       <Contact />
     </>
   );

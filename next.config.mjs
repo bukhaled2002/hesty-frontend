@@ -10,7 +10,9 @@ const nextConfig = {
       "png.pngtree.com",
       "img.freepik.com",
       "cdn.dribbble.com",
-      "www.google.com"
+      "www.google.com",
+      "www.example.com",
+      "example.com"
     ],
     remotePatterns: [
       {
