@@ -30,6 +30,7 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { extractDriveFileId } from "@/lib/helper/driveImage";
 import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
+
 type Props = {};
 
 function AdminCoursesContent({}: Props) {
@@ -89,9 +90,9 @@ function AdminCoursesContent({}: Props) {
               >
                 <div className="h-60 relative">
                   <Image
-                              alt={course.name}
-                              src={course.img_url ? transformGoogleDriveUrl(course.img_url) : "/images/card-bg-2.webp"}
-          
+                    alt={course.name}
+                    src={course.img_url ? transformGoogleDriveUrl(course.img_url) : "/images/defaultAvatar.webp"}
+
                     width={500}
                     height={500}
                     className="h-full w-full rounded-md object-cover"
@@ -149,6 +150,15 @@ function AdminCoursesContent({}: Props) {
                             اضافة امتحان جديد
                           </Link>
                         </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link
+                            href={`/admin/courses/${course.id}/quizs`}
+                            className="cursor-pointer"
+                          >
+                            الامتحانات
+                          </Link>
+                        </DropdownMenuItem>
+
                         <DropdownMenuItem
                           className="text-red-500 hover:text-red-600 cursor-pointer"
                           onClick={(e) => {
@@ -241,7 +251,7 @@ function AdminCoursesContent({}: Props) {
               <path
                 id="Icon"
                 d="M17 20C17 20.5523 17.4477 21 18 21C18.5523 21 19 20.5523 19 20H17ZM19 10C19 9.44772 18.5523 9 18 9C17.4477 9 17 9.44772 17 10H19ZM11 20C11 20.5523 11.4477 21 12 21C12.5523 21 13 20.5523 13 20H11ZM13 4C13 3.44772 12.5523 3 12 3C11.4477 3 11 3.44772 11 4H13ZM5 20C5 20.5523 5.44772 21 6 21C6.55228 21 7 20.5523 7 20H5ZM7 14C7 13.4477 6.55228 13 6 13C5.44772 13 5 13.4477 5 14H7ZM19 20V10H17V20H19ZM13 20V4H11V20H13ZM7 20V14H5V20H7Z"
-                fill="#F65428"
+                fill="#4e2bcd"
               />
             </g>
           </svg>

@@ -57,6 +57,7 @@ function StudentLoginForm({}: Props) {
         role: "student",
       });
       if (res === true) {
+        localStorage.setItem("isLoggedIn", "true");
         toast({
           title: "تم تسجيل الدخول بنجاح",
         });
@@ -96,8 +97,7 @@ function StudentLoginForm({}: Props) {
       </Link>
       <div className="w-full">
         <h1 className="text-xl text-[#7B758C] font-bold sm:text-2xl text-center mb-6">
-          مرحبا بكم في منصة حصتي التعليمية
-        </h1>
+        يسعدنا لقائك مجددا، أري إنك شغوف بالبرمجة.        </h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField

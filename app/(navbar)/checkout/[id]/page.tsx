@@ -38,7 +38,7 @@ async function CheckOut({ params }: Props) {
               alt={checkOutDetails.name}
             />
             <div className="flex-1 flex flex-col justify-between h-[138px] max-h-full">
-              <h1 className="text-[#121212] text-lg font-bold truncate">
+              <h1 className="text-[#121212] text-lg font-bold">
                 {checkOutDetails.name}
               </h1>
               <div className="text-[#121212B2] font-semibold text-lg">

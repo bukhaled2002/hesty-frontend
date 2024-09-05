@@ -26,13 +26,23 @@ function HeaderContainer({ data }: Props) {
     open: { x: 0 },
     closed: { x: "-100%" },
   };
-
+  const handleLogout = async () => {
+    try {
+      await logoutAction();
+      
+      localStorage.setItem("isLoggedIn", "false");
+      
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+  
   return (
     <header className="bg-white py-2.5 fixed top-0 z-50 w-full border-b-[1.6px]">
       <nav className="container flex items-center justify-between gap-x-5">
         <Link href="/">
           <span className="sr-only">Home</span>
-          <Image className="md:h-[64px] md:w-[125px] sm:w-[100px] w-16 " alt="Logo" height={63.87} src="/logo.svg" width={125} />
+          <Image className="md:h-[71px] md:w-[217px] w-[150px] " alt="Logo" height={71} src="/logo.svg" width={217} />
         </Link>
         <div className="lg:block hidden">
           <HeaderLinks />
@@ -52,11 +62,11 @@ function HeaderContainer({ data }: Props) {
           </div>
         ) : (
           <div className="lg:flex hidden items-center gap-2">
-            <form  action={logoutAction}>
+            <button onClick={handleLogout} >
               <button className="flex w-full text-primary border border-primary rounded-[4px] hover:bg-primary transition-all duration-200 px-3 py-2 text-sm font-medium hover:text-white md:p-2 md:px-3">
                 <div className="hidden md:block">تسجيل الخروج</div>
               </button>
-            </form>
+            </button>
             <User />
           </div>
         )}
@@ -91,15 +101,16 @@ function HeaderContainer({ data }: Props) {
             <></>
           ) : (
             <div className="border-b pb-4">
-                            <User />
-                            <form  className="text-[#FF0000] flex items-center justify-end gap-2 flex-row-reverse mt-2  cursor-pointer"   action={logoutAction}>
-              <span>
-                تسجيل الخروج
-              </span>
-              <div className="rotate-180">
-              <LogoutIcon/>
-              </div>
-            </form>
+              <User />
+              <button className="text-[#FF0000] flex items-center justify-end gap-2 flex-row-reverse mt-2  cursor-pointer"               onClick={handleLogout}
+              >
+                <span>
+                  تسجيل الخروج
+                </span>
+                <div className="rotate-180">
+                  <LogoutIcon />
+                </div>
+              </button>
 
             </div>
           )}

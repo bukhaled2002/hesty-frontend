@@ -57,6 +57,7 @@ function ParentLoginForm({}: Props) {
         role: "parent",
       });
       if (res === true) {
+        localStorage.setItem("isLoggedIn", "true");
         toast({
           title: "تم تسجيل الدخول بنجاح",
         });

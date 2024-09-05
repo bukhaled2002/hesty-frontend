@@ -56,6 +56,7 @@ function TeacherLoginForm({}: Props) {
         role: "teacher",
       });
       if (res === true) {
+        localStorage.setItem("isLoggedIn", "true");
         toast({
           title: "تم تسجيل الدخول بنجاح",
         });
