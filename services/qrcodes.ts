@@ -1,4 +1,4 @@
-import { adminAPI } from "./axios";
+import { adminAPI, hestyAPI } from "./axios";
 export type PostQuiz = {
   title: string;
   duration: string;
@@ -27,6 +27,10 @@ export async function CreateNewQrCode(courseId: string, limit_qrCode: number) {
   const res = await adminAPI.post(`/courses/generateQrCode/${courseId}?limit_qrCode=${limit_qrCode}`);
   return res.data;
 }
+export async function CheckoutWithQrCode(courseId: string, code: number) {
+  const res = await hestyAPI.post(`/course/checkout-submit-withCode/${courseId}?code=${code}`);
+  return res.data;
+}
 
 export async function GetQrCodes(courseId: string): Promise<QrCode[]> {
   try {
@@ -38,13 +42,15 @@ export async function GetQrCodes(courseId: string): Promise<QrCode[]> {
   }
 }
 
-export async function deleteQuiz(quizId: string) {
+export async function DeleteQrCode(ids: string[]) {
   try {
-    const res = await adminAPI.delete(`/quiz/${quizId}`);
-    console.log("Quiz deleted successfully:", res); // Log success message
+    const res = await adminAPI.delete(`/courses/delete/QrCodes`, {
+      data: ids, // Ensure ids are sent in the request body
+    });
+    console.log("QR code deleted successfully:", res);
     return res.data;
   } catch (error) {
-    console.error("Error deleting quiz:", error);
-    throw error; // Handle or propagate the error
+    console.error("Error deleting QR code:", error);
+    throw error;
   }
 }

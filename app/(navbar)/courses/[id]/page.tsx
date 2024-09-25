@@ -10,6 +10,7 @@ import { Clock, RefreshCcw, UsersIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
+import AddCode from "@/components/admin/courses/AddCode";
 type Props = {
   params: { id: string };
 };
@@ -34,8 +35,14 @@ async function Course({ params }: Props) {
   const isChaptersEmpty = course.chapters.every(
     (chapter) => chapter.lectures.length === 0
   );
-
-  return (
+  const firstChapterWithLectures = course.chapters.find(
+    (chapter) => chapter.lectures.length > 0
+  );
+  
+  const lecturePath = firstChapterWithLectures
+    ? `/courses/${course.id}/lecture/${firstChapterWithLectures.lectures[0]?.id}`
+    : '';
+    return (
     <>
       <section className="overflow-hidden bg-[#5949be] relative z-10 sm:py-16 py-10 text-white">
         <div className="container flex gap-5 lg:flex-row flex-col items-center justify-between">
@@ -62,18 +69,22 @@ async function Course({ params }: Props) {
               </div>
             ) : course.enrolled ? (
               <Link
-                href={`/courses/${course.id}/lecture/${course.chapters[0].lectures[0].id}`}
+                href={lecturePath}
               >
                 <Button className="bg-primary text-white w-full sm:py-6 py-3 font-bold  sm:text-xl">
                   تابع الدورة
                 </Button>
               </Link>
             ) : (
-              <Link href={`/checkout/${course.id}`}>
-                <Button className="bg-primary text-white w-full sm:py-6 py-3 font-bold  sm:text-xl">
-                  شراء مقابل {course.price_after_discount} جنيه مصري
-                </Button>
-              </Link>
+              <div className="space-y-5">
+                                <Link href={`/checkout/${course.id}`}>
+                  <Button className="bg-primary text-white w-full sm:py-6 py-3 font-bold  sm:text-xl">
+                    شراء مقابل {course.price_after_discount} جنيه مصري
+                  </Button>
+                </Link>
+                <AddCode LecturePath={lecturePath} courseId={id} />
+
+              </div>
             )}
           </div>
           <div className="relative sm:min-w-[500px] lg:max-w-[500px] w-full lg:max-h-[300px] sm:max-h-[400px] max-h-[300px] h-full border rounded-lg overflow-hidden ">

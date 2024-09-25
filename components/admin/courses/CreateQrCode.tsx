@@ -101,7 +101,7 @@ const CreateQrCode = ({ courseId }: AllQuizsProps) => {
                                                 <Input
                                                     className="py-4"
                                                     type="text"
-                                                    placeholder="المبلغ"
+                                                    placeholder="عدد الرموز"
                                                     {...field}
                                                 />
                                             </FormControl>
