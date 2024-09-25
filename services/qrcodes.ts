@@ -45,7 +45,9 @@ export async function GetQrCodes(courseId: string): Promise<QrCode[]> {
 export async function DeleteQrCode(ids: string[]) {
   try {
     const res = await adminAPI.delete(`/courses/delete/QrCodes`, {
-      data: ids, // Ensure ids are sent in the request body
+      data: {
+        ids: ids,
+      },
     });
     console.log("QR code deleted successfully:", res);
     return res.data;

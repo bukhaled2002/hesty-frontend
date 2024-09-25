@@ -27,7 +27,7 @@ function AdminQrCodes({ params }: Props) {
 
   // useMutation hook for deleting QR codes
   const mutation = useMutation({
-    mutationFn: (id: string) => DeleteQrCode([id]), // Pass the id as an array
+    mutationFn: (id: string) => DeleteQrCode([id]), // Pass the id in an array
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-qr-codes"] });
       toast({
