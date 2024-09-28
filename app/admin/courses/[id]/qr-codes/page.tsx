@@ -1,10 +1,12 @@
 "use client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
+import { Loader2, Download } from "lucide-react";
 import { GetQrCodes, DeleteQrCode } from "@/services/qrcodes";
 import CreateQrCode from "@/components/admin/courses/CreateQrCode";
 import QRCode from "react-qr-code";
 import { toast } from "@/components/ui/use-toast";
+import * as XLSX from "xlsx"; // Import xlsx
+import { Button } from "@/components/ui/button";
 
 type Props = {
   params: {
@@ -70,6 +72,23 @@ function AdminQrCodes({ params }: Props) {
       console.error("SVG element not found for QR code");
     }
   };
+  const exportToExcel = () => {
+    if (qrCodes) {
+      const worksheetData = qrCodes.map((mcq) => ({
+        ID: mcq.id,
+        Code: mcq.code,
+        Availability: mcq.isUsed ? "Used" : "Not Used",
+        'Number Used': mcq.num_used
+      }));
+
+      const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "QR Codes");
+
+      // Download the Excel file
+      XLSX.writeFile(workbook, `QR_Codes_${params.id}.xlsx`);
+    }
+  };
 
   if (isLoading)
     return (
@@ -88,6 +107,11 @@ function AdminQrCodes({ params }: Props) {
   return (
     <div>
       <CreateQrCode courseId={params.id} />
+      <Button onClick={exportToExcel} variant="secondary" size="sm" className="text-white mb-7">
+                            تحميل الأكواد
+                            <Download className="ms-2 h-4 w-4" />
+                        </Button>
+
       <div className="grid grid-cols-3 gap-6">
         {qrCodes &&
           qrCodes.map((mcq, index) => (

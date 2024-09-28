@@ -51,6 +51,7 @@
     "use-debounce": "^10.0.0",
     "video.js": "^8.17.3",
     "videojs-youtube": "^3.0.1",
+    "xlsx": "^0.18.5",
     "zod": "^3.22.4"
   },
   "devDependencies": {
