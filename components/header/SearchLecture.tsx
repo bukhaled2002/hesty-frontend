@@ -2,7 +2,7 @@
 import { Search } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import {
     Form,
@@ -19,7 +19,7 @@ import { isAxiosError } from "axios";
 import { Input } from "@/components/ui/input";
 import { SearchLectureWithCode, OpenLectureWithCode } from "@/services/admin/lecture-qrcodes";
 import { useLectureStore } from "@/lib/stores/lectureStore";
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const FormSchema = z.object({
     code: z.string().min(1, "الرجاء إدخال رمز صحيح").regex(/^[a-zA-Z0-9]+$/, "الرمز يجب أن يحتوي على أحرف وأرقام فقط"),
@@ -37,6 +37,7 @@ const SearchLecture = () => {
     const [isSuccess, setIsSuccess] = useState(false); // Track if the first form succeeded
     const [errorMessage, setErrorMessage] = useState<string | null>(null); // Track error message
     const router = useRouter(); // Ensure this is used inside a client-side component
+    const searchParams = useSearchParams(); // Use this hook to access URL params
 
     // First form setup
     const form = useForm<FormValues>({
@@ -47,6 +48,12 @@ const SearchLecture = () => {
     const secondForm = useForm<SecondFormValues>({
         resolver: zodResolver(SecondFormSchema),
     });
+    useEffect(() => {
+        const code = searchParams.get("search-lecture");
+        if (code === "true") {
+            setIsOpen(true); // Open the dialog if the code is correct
+        }
+    }, [searchParams]);
 
     // Function to submit the first form
     const onSubmit = async (values: FormValues) => {

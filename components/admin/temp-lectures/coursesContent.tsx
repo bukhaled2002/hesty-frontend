@@ -90,7 +90,7 @@ function AdminLecturesContent({}: Props) {
                 <QRCode
                 id={`qr-code-${lecture.code}`}
                 className="h-full w-full"
-                value={`https://www.7sty.com/courses/${lecture.id}?code=${lecture.code}` || "00000"}
+                value={`https://www.7sty.com/?search-lecture=true`}
                 level="H"
               />
                   <div className="absolute bottom-0 flex border-b-[6px] border-primary items-center justify-between text-white bg-black bg-opacity-80 w-full px-4 py-2 text-sm">
