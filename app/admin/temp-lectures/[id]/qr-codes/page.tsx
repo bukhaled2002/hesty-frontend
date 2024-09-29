@@ -1,12 +1,12 @@
 "use client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Download } from "lucide-react";
-import { GetQrCodes, DeleteQrCode } from "@/services/qrcodes";
-import CreateQrCode from "@/components/admin/courses/CreateQrCode";
+import CreateQrCode from "@/components/admin/temp-lectures/CreateQrCode";
 import QRCode from "react-qr-code";
 import { toast } from "@/components/ui/use-toast";
 import * as XLSX from "xlsx"; // Import xlsx
 import { Button } from "@/components/ui/button";
+import { GetQrCodes, DeleteQrCode } from "@/services/admin/lecture-qrcodes";
 
 type Props = {
   params: {
@@ -15,19 +15,14 @@ type Props = {
 };
 
 function AdminQrCodes({ params }: Props) {
-  const {
-    data: qrCodes,
-    isLoading,
-    error,
-    refetch,
-  } = useQuery({
-    queryKey: ["admin-qr-codes", params.id],
+  const { data: qrCodes, isLoading, error, refetch } = useQuery({
+    queryKey: ["lecture-qr-codes", params.id],
     queryFn: () => GetQrCodes(params.id),
   });
+
   const queryClient = useQueryClient();
 
-
-  // useMutation hook for deleting QR codes
+  // useMutation hook for deleting multiple QR codes
   const mutation = useMutation({
     mutationFn: (ids: string[]) => DeleteQrCode(ids), // Accept array of ids
     onSuccess: () => {
@@ -72,13 +67,14 @@ function AdminQrCodes({ params }: Props) {
       console.error("SVG element not found for QR code");
     }
   };
+
   const exportToExcel = () => {
     if (qrCodes) {
       const worksheetData = qrCodes.map((mcq) => ({
         ID: mcq.id,
         Code: mcq.code,
         Availability: mcq.isUsed ? "Used" : "Not Used",
-        'Number Used': mcq.num_used
+        "Number Used": mcq.num_used,
       }));
 
       const worksheet = XLSX.utils.json_to_sheet(worksheetData);
@@ -89,7 +85,8 @@ function AdminQrCodes({ params }: Props) {
       XLSX.writeFile(workbook, `QR_Codes_${params.id}.xlsx`);
     }
   };
-  
+
+  // Function to delete all QR codes
   const deleteAllQrCodes = () => {
     if (qrCodes && qrCodes.length > 0) {  // Ensure qrCodes is defined and not empty
       const ids = qrCodes.map((qr) => qr.id); // Collect all QR code ids
@@ -101,8 +98,7 @@ function AdminQrCodes({ params }: Props) {
       });
     }
   };
-
-  if (isLoading)
+    if (isLoading)
     return (
       <div className="flex items-center justify-center h-screen">
         <Loader2 className="animate-spin text-secondary" size={50} />
@@ -118,8 +114,8 @@ function AdminQrCodes({ params }: Props) {
 
   return (
     <div>
-      <CreateQrCode courseId={params.id} />
-      <div className="flex gap-4">
+      <CreateQrCode lectureId={params.id} />
+    <div className="flex gap-4">
     <Button
         onClick={exportToExcel}
         variant="secondary"
@@ -140,7 +136,6 @@ function AdminQrCodes({ params }: Props) {
       </Button>
 
     </div>
-
       <div className="grid grid-cols-3 gap-6">
         {qrCodes &&
           qrCodes.map((mcq, index) => (
@@ -163,6 +158,7 @@ function AdminQrCodes({ params }: Props) {
                 value={`https://www.7sty.com/courses/${params.id}?code=${mcq.code}` || "00000"}
                 level="H"
               />
+              <h1 className="text-center text-primary mt-3 font-bold">متبقي {mcq.num_used} استخدامات</h1>
 
               <button
                 className="bg-secondary !text-base !font-bold !h-11 my-4 w-48 text-white hover:bg-indigo-900 transition-all duration-300"

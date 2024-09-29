@@ -17,18 +17,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/components/ui/use-toast";
 import { isAxiosError } from "axios";
 import { Plus } from "lucide-react";
-import { CreateNewQrCode } from "@/services/qrcodes";
+import { CreateNewQrCode } from "@/services/admin/lecture-qrcodes";
 type AllQuizsProps = {
-    courseId: string;
+    lectureId: string;
 };
 
 const FormSchema = z.object({
     limit_qrCode: z.coerce.number().min(1, "الرجاء ادخال قيمة صحيحة"),
+    num_used: z.coerce.number().min(1, "الرجاء ادخال قيمة صحيحة"),
+
 });
 
 type FormValues = z.infer<typeof FormSchema>;
 
-const CreateQrCode = ({ courseId }: AllQuizsProps) => {
+const CreateQrCode = ({ lectureId }: AllQuizsProps) => {
     const queryClient = useQueryClient();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -39,13 +41,13 @@ const CreateQrCode = ({ courseId }: AllQuizsProps) => {
     const onSubmit = async (values: FormValues) => {
         setIsSubmitting(true);
         try {
-            await CreateNewQrCode(courseId, values.limit_qrCode);
+            await CreateNewQrCode(lectureId, values.limit_qrCode, values.num_used);
             form.reset();
             setIsOpen(false);
             toast({
                 title: "تم اضافة الرموز بنجاح",
             });
-            queryClient.invalidateQueries({ queryKey: ["admin-qr-codes"] });
+            queryClient.invalidateQueries({ queryKey: ["lecture-qr-codes"] });
         } catch (error) {
             if (isAxiosError(error)) {
                 toast({
@@ -99,6 +101,23 @@ const CreateQrCode = ({ courseId }: AllQuizsProps) => {
                                                     className="py-4"
                                                     type="text"
                                                     placeholder="عدد الرموز"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                                                <FormField
+                                    control={form.control}
+                                    name="num_used"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormControl>
+                                                <Input
+                                                    className="py-4"
+                                                    type="text"
+                                                    placeholder="عدد مرات الاستخدام"
                                                     {...field}
                                                 />
                                             </FormControl>

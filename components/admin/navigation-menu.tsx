@@ -1,6 +1,6 @@
 "use client";
 import { logoutAction } from "@/lib/actions/logoutAction";
-import { Book, Loader2, Power, Settings, UserCog, BookOpen } from "lucide-react";
+import { Book, Loader2, Power, Settings, UserCog, BookOpen, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import NavLink from "../navlink";
@@ -85,6 +85,14 @@ function NavigationMenu({}: Props) {
             </svg>
             <span>الدورات التعليمية</span>
           </NavLink>
+          <NavLink
+            href={`/admin/temp-lectures`}
+            className="flex items-center gap-x-[12px] py-2.5 px-6 whitespace-nowrap"
+          >
+            <Clock/>
+            <span>الحصص المؤقتة</span>
+          </NavLink>
+
           <NavLink
             href={`/admin/books`}
             className="flex items-center gap-x-[12px] py-2.5 px-6 whitespace-nowrap"

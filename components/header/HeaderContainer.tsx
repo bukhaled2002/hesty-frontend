@@ -11,6 +11,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import CloseIcon from "@/public/icons/CloseIcon";
 import LogoutIcon from "@/public/icons/LogoutIcon";
+import SearchLecture from "./SearchLecture";
+
 type Props = {
   data: any; // Adjust the type based on what `auth()` returns
 };
@@ -40,10 +42,14 @@ function HeaderContainer({ data }: Props) {
   return (
     <header className="bg-white py-2.5 fixed top-0 z-50 w-full border-b-[1.6px]">
       <nav className="container flex items-center justify-between gap-x-5">
+        <div className="flex items-center">
         <Link href="/">
           <span className="sr-only">Home</span>
-          <Image className="md:h-[71px] md:w-[217px] w-[150px] " alt="Logo" height={71} src="/logo.svg" width={217} />
+          <Image className="md:h-[71px] md:w-[217px] sm:w-[150px] w-[100px]" alt="Logo" height={71} src="/logo.svg" width={217} />
+
         </Link>
+        <SearchLecture/>
+        </div>
         <div className="lg:block hidden">
           <HeaderLinks />
         </div>
