@@ -15,40 +15,22 @@ import { PlusIcon, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
-import AdminNestedQuizQuestions from "./quiz-questions";
 import { toast } from "@/components/ui/use-toast";
 import { isAxiosError } from "axios";
-import { createQuiz } from "@/services/quiz";
-import { createMSQ } from "@/services/admin/mcq";
+import { createEssay } from "@/services/admin/essay";
 
 const FormSchema = z.object({
   questions: z.array(
     z.object({
       question: z.string().nonempty("السؤال مطلوب"),
       figure: z.array(z.string().nonempty("المدخل مطلوب")),
-      choices: z
-        .array(
-          z.object({
-            answer: z.string().nonempty("الاجابة مطلوبة"),
-            isCorrect: z.boolean(),
-          })
-        )
-        .refine(
-          (choices) => {
-            const correctChoices = choices.filter((choice) => choice.isCorrect);
-            return correctChoices.length === 1;
-          },
-          {
-            message: "يجب ان يكون اختيار واحد صحيح",
-          }
-        ),
     })
   ),
 });
 
 type FormValues = z.infer<typeof FormSchema>;
 
-function AdminCreateQuizeFormMCQ() {
+function AdminCreateQuizeFormEssay() {
   const router = useRouter();
   const form = useForm<FormValues>({
     resolver: zodResolver(FormSchema),
@@ -57,70 +39,36 @@ function AdminCreateQuizeFormMCQ() {
         {
           question: "",
           figure: [""],
-          choices: [
-            {
-              answer: "",
-              isCorrect: false,
-            },
-            {
-              answer: "",
-              isCorrect: false,
-            },
-          ],
         },
       ],
     },
   });
 
-  const {
-    fields: questionFields,
-    append: appendQuestion,
-    remove: removeQuestion,
-  } = useFieldArray({
-    name: "questions",
+  const { fields, append, remove } = useFieldArray({
     control: form.control,
+    name: "questions",
   });
 
   function addQuestion() {
-    appendQuestion({
+    append({
       question: "",
       figure: [""],
-      choices: [
-        {
-          answer: "",
-          isCorrect: false,
-        },
-        {
-          answer: "",
-          isCorrect: false,
-        },
-      ],
     });
   }
 
   async function onSubmit(data: FormValues) {
-    const newData = {
-      ...data,
-    };
     try {
-      await createMSQ(newData.questions as any);
-      toast({
-        title: "تم انشاء الامتحان بنجاح",
-      });
-
-      router.push("/admin/question-bank/mcq");
+      await createEssay(data.questions as any);
+      toast({ title: "تم انشاء الامتحان بنجاح" });
+      router.push("/admin/question-bank/essay");
     } catch (error) {
-      if (isAxiosError(error)) {
-        toast({
-          title: error.response?.data.message,
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "حدث خطأ ما",
-          variant: "destructive",
-        });
-      }
+      const errorMessage = isAxiosError(error)
+        ? error.response?.data.message || "حدث خطأ ما"
+        : "حدث خطأ ما";
+      toast({
+        title: errorMessage,
+        variant: "destructive",
+      });
     }
   }
 
@@ -135,8 +83,8 @@ function AdminCreateQuizeFormMCQ() {
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          {questionFields.map((question, index) => (
-            <div key={question.id}>
+          {fields.map((field, index) => (
+            <div key={field.id}>
               <Separator className="h-1 w-[600px] m-auto rounded-lg my-[74px]" />
               <div className="flex items-end gap-x-5 mb-5">
                 <FormField
@@ -163,9 +111,9 @@ function AdminCreateQuizeFormMCQ() {
                     </FormItem>
                   )}
                 />
-                {questionFields.length > 1 && (
+                {fields.length > 1 && (
                   <Button
-                    onClick={() => removeQuestion(index)}
+                    onClick={() => remove(index)}
                     type="button"
                     className="group bg-red-500 hover:bg-red-700 text-white border border-red-600 font-bold"
                   >
@@ -237,13 +185,9 @@ function AdminCreateQuizeFormMCQ() {
                   </FormItem>
                 )}
               />
-              <AdminNestedQuizQuestions
-                key={index}
-                choiceIndex={index}
-                form={form}
-              />
-              {index === questionFields.length - 1 && (
-                <div className="flex justify-between gap-x-5">
+
+              {index === fields.length - 1 && (
+                <div className="flex justify-between gap-x-5 mt-8">
                   <Button
                     onClick={addQuestion}
                     type="button"
@@ -269,4 +213,4 @@ function AdminCreateQuizeFormMCQ() {
   );
 }
 
-export default AdminCreateQuizeFormMCQ;
+export default AdminCreateQuizeFormEssay;

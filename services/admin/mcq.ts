@@ -25,9 +25,23 @@ export async function getMCQ() {
   return res.data;
 }
 
-export interface CreateMSQ {}
+export interface ChoiceMSQ {
+  answer: string;
+  isCorrect: boolean;
+}
 
-export async function createMSQ(data: CreateMSQ) {
+export interface CreateMSQ {
+  question: string;
+  explanation?: string;
+  attachment?: string;
+  courseId?: string;
+  chapterId?: string;
+  lectureId?: string;
+  figure?: string[];
+  choices: ChoiceMSQ[];
+}
+
+export async function createMSQ(data: CreateMSQ[]) {
   const res = await hestyAPI.post<AllMCQ>("/questions-bank/create", data);
   return res.data;
 }
