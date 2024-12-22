@@ -5,11 +5,12 @@ export type PostQuiz = {
   duration: string;
   lectureId: string;
   questions: {
-    question: string;
+    id?: string;
+    question?: string;
     figure?: string[];
-    choices: {
-      answer: string;
-      isCorrect: boolean;
+    choices?: {
+      answer?: string;
+      isCorrect?: boolean;
     }[];
   }[];
 };
