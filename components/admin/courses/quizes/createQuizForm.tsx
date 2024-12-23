@@ -144,12 +144,16 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
     });
   }
   async function onSubmit(data: FormValues) {
-    const newData = {
+    const cleanedData = {
       ...data,
+      questions: data.questions.map((question) => {
+        const { id, ...rest } = question;
+        return id ? { id, ...rest } : rest;
+      }),
       lectureId: lectureId as string,
     };
     try {
-      await createQuiz(newData);
+      await createQuiz(cleanedData);
       toast({
         title: "تم انشاء الامتحان بنجاح",
       });
