@@ -10,7 +10,7 @@ export interface SingleEssayQuestion {
   question: string;
   explanation: string;
   courseId: string;
-  chapterId: string;
+  chapterId: string | string[];
   lectureId: string;
   attachment: string;
   figure: string[];
@@ -40,5 +40,10 @@ export async function createEssay(data: CreateEssay[]) {
     "/questions-bank/essay/create",
     data
   );
+  return res.data;
+}
+
+export async function getAllEssay() {
+  const res = await hestyAPI.get<AllEssay>("/questions-bank/essay/all", {});
   return res.data;
 }
