@@ -10,6 +10,7 @@ const credentialsConfig = CredentialsProvider({
     role: { label: "Role", type: "text" },
   },
   async authorize(credentials) {
+    console.log(credentials);
     const api =
       credentials?.role === "student"
         ? studentAPI

@@ -8,12 +8,14 @@ export async function authenticate(data: {
   role: "student" | "parent" | "admin" | "teacher";
 }) {
   try {
+    console.log(data);
     await signIn("credentials", {
       ...data,
       redirect: false,
     });
     return true;
   } catch (error) {
+    console.log(error);
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":

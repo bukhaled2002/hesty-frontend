@@ -31,24 +31,28 @@ function HeaderContainer({ data }: Props) {
   const handleLogout = async () => {
     try {
       await logoutAction();
-      
+
       localStorage.setItem("isLoggedIn", "false");
-      
     } catch (error) {
       console.error("Error logging out:", error);
     }
   };
-  
+
   return (
     <header className="bg-white py-2.5 fixed top-0 z-50 w-full border-b-[1.6px]">
       <nav className="container flex items-center justify-between gap-x-5">
         <div className="flex items-center">
-        <Link href="/">
-          <span className="sr-only">Home</span>
-          <Image className="md:h-[71px] md:w-[217px] sm:w-[150px] w-[100px]" alt="Logo" height={71} src="/logo.svg" width={217} />
-
-        </Link>
-        <SearchLecture/>
+          <Link href="/">
+            <span className="sr-only">Home</span>
+            <Image
+              className="md:h-[71px] md:w-[217px] sm:w-[150px] w-[100px]"
+              alt="Logo"
+              height={71}
+              src="/logo.svg"
+              width={217}
+            />
+          </Link>
+          <SearchLecture />
         </div>
         <div className="lg:block hidden">
           <HeaderLinks />
@@ -61,14 +65,14 @@ function HeaderContainer({ data }: Props) {
               </Link>
               <Link href={`/auth/student/register`}>
                 <Button className="text-base" variant="outline">
-                  انشاء حساب
+                  اعمل اكونت دلوقتي
                 </Button>
               </Link>
             </div>
           </div>
         ) : (
           <div className="lg:flex hidden items-center gap-2">
-            <button onClick={handleLogout} >
+            <button onClick={handleLogout}>
               <button className="flex w-full text-primary border border-primary rounded-[4px] hover:bg-primary transition-all duration-200 px-3 py-2 text-sm font-medium hover:text-white md:p-2 md:px-3">
                 <div className="hidden md:block">تسجيل الخروج</div>
               </button>
@@ -108,16 +112,15 @@ function HeaderContainer({ data }: Props) {
           ) : (
             <div className="border-b pb-4">
               <User />
-              <button className="text-[#FF0000] flex items-center justify-end gap-2 flex-row-reverse mt-2  cursor-pointer"               onClick={handleLogout}
+              <button
+                className="text-[#FF0000] flex items-center justify-end gap-2 flex-row-reverse mt-2  cursor-pointer"
+                onClick={handleLogout}
               >
-                <span>
-                  تسجيل الخروج
-                </span>
+                <span>تسجيل الخروج</span>
                 <div className="rotate-180">
                   <LogoutIcon />
                 </div>
               </button>
-
             </div>
           )}
 

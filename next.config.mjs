@@ -12,7 +12,7 @@ const nextConfig = {
       "cdn.dribbble.com",
       "www.google.com",
       "www.example.com",
-      "example.com"
+      "example.com",
     ],
     remotePatterns: [
       {
@@ -20,7 +20,7 @@ const nextConfig = {
         hostname: "drive.google.com",
         port: "",
         pathname: "/uc**",
-          },
+      },
       {
         protocol: "https",
         hostname: "stepbysteplistening.com",
@@ -50,6 +50,12 @@ const nextConfig = {
         hostname: "img.freepik.com",
         port: "",
         pathname: "/free-photo/**",
+      },
+      {
+        protocol: "https",
+        hostname: "i.ibb.co",
+        port: "",
+        // pathname: "/free-photo/**",
       },
       {
         protocol: "https",

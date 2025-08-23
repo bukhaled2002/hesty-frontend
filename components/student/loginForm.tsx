@@ -96,8 +96,16 @@ function StudentLoginForm({}: Props) {
         />
       </Link>
       <div className="w-full">
-        <h1 className="text-xl text-[#7B758C] font-bold sm:text-2xl text-center mb-6">
-        يسعدنا لقائك مجددا، أري إنك شغوف بالبرمجة.        </h1>
+        <div className="my-4">
+          <h2 className="text-2xl font-bold text-secondary dark:text-white md:text-[42px] leading-[54.6px]">
+            بيتك و مكانك{" "}
+            <span className="sm:ms-5 ms-1 text-primary">مع حصتي</span>
+          </h2>
+
+          <p className="text-secondary dark:text-white/85 md:mt-4 lg:w-4/5 font-medium sm:leading-[30px] ">
+            جاهز تكمل تفوقك و نجاحك مع أقوى هيئة تدريس في مصر
+          </p>
+        </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField

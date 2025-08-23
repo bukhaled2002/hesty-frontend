@@ -48,6 +48,7 @@ function TeacherLoginForm({}: Props) {
   });
 
   async function onSubmit(data: FormValues) {
+    console.log(data);
     setIsLoading(true);
     try {
       const res = await authenticate({
@@ -55,12 +56,13 @@ function TeacherLoginForm({}: Props) {
         password: data.password,
         role: "teacher",
       });
+      console.log(res);
       if (res === true) {
         localStorage.setItem("isLoggedIn", "true");
         toast({
           title: "تم تسجيل الدخول بنجاح",
         });
-        router.push("/");
+        router.push("/teacher/dashboard");
       } else {
         toast({
           title: "البريد الالكتروني او كلمة السر غير صحيحة",
@@ -68,6 +70,7 @@ function TeacherLoginForm({}: Props) {
         });
       }
     } catch (error: any) {
+      console.log(error);
       if (isAxiosError(error)) {
         toast({
           title: error.response?.data.message,
