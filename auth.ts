@@ -15,10 +15,10 @@ const credentialsConfig = CredentialsProvider({
       credentials?.role === "student"
         ? studentAPI
         : credentials?.role === "parent"
-        ? parentAPI
-        : credentials?.role === "teacher"
-        ? teacherAPI
-        : adminAPI;
+          ? parentAPI
+          : credentials?.role === "teacher"
+            ? teacherAPI
+            : adminAPI;
     try {
       const response = await api.post("/login", {
         username: credentials?.username,
